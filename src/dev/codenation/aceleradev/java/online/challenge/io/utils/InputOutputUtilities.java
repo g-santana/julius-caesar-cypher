@@ -25,8 +25,7 @@ public class InputOutputUtilities {
 	private static final String POST_URL = "https://api.codenation.dev/v1/challenge/dev-ps/submit-solution?token=";
 	
 	public static JSONObject requestData() throws IOException, ParseException {
-		String token = readToken();
-		URL url = new URL(GET_URL.concat(token));
+		URL url = new URL(GET_URL.concat(readToken()));
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod(GET);
 		conn.connect();
@@ -59,6 +58,7 @@ public class InputOutputUtilities {
 	
 	public static void writeResultToFile(JSONObject challengeData, String decrypted, String sha1Resume) throws IOException {
 		FileWriter fw = new FileWriter(new File("answer.json"));
+		
 		fw.write("{\n"
 				+ "\t\"numero_casas\": " + challengeData.get("numero_casas") + ",\n"
 				+ "\t\"token\": \"" + challengeData.get("token") + "\",\n"
@@ -66,6 +66,7 @@ public class InputOutputUtilities {
 				+ "\t\"decifrado\": \"" + decrypted + "\",\n"
 				+ "\t\"resumo_criptografico\": \"" + sha1Resume + "\"\n"
 				+ "}");
+		
 		fw.close();
 	}
 	
