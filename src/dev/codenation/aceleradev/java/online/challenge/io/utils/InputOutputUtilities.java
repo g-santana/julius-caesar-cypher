@@ -65,15 +65,15 @@ public class InputOutputUtilities {
 
 		OutputStream output = conn.getOutputStream();
 		PrintWriter writer = new PrintWriter(new OutputStreamWriter(output, CHARSET), true);
-	    writer.append("--" + boundary).append(CRLF);
-	    writer.append("Content-Disposition: form-data; name=\"answer\"; filename=\"" + answer.getName() + "\"").append(CRLF);
-	    writer.append("Content-Type: text/plain; charset=" + CHARSET).append(CRLF);
-	    writer.append(CRLF).flush();
-	    Files.copy(answer.toPath(), output);
-	    output.flush();
-	    writer.append(CRLF).flush();
-	    writer.append("--" + boundary + "--").append(CRLF).flush();
-	    writer.close();
+		writer.append("--" + boundary).append(CRLF);
+		writer.append("Content-Disposition: form-data; name=\"answer\"; filename=\"" + answer.getName() + "\"").append(CRLF);
+		writer.append("Content-Type: text/plain; charset=" + CHARSET).append(CRLF);
+		writer.append(CRLF).flush();
+		Files.copy(answer.toPath(), output);
+		output.flush();
+		writer.append(CRLF).flush();
+		writer.append("--" + boundary + "--").append(CRLF).flush();
+		writer.close();
 	   
 		int responseCode = conn.getResponseCode();
 		System.out.println(responseCode);
