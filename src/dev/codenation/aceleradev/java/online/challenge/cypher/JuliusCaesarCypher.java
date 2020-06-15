@@ -24,7 +24,7 @@ public class JuliusCaesarCypher {
 		String decrypted = decrypt((String) challengeData.get("cifrado"), (int) (long) challengeData.get("numero_casas"));
 		String sha1Resume = DigestUtils.sha1Hex(decrypted);
 		InputOutputUtilities.writeResultToFile(challengeData, decrypted, sha1Resume);
-		//InputOutputUtilities.postAnswer();
+		InputOutputUtilities.postAnswer();
 	}
 	
 	private static String decrypt(String phrase, int shiftBack) {
